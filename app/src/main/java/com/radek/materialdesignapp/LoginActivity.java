@@ -1,6 +1,7 @@
 package com.radek.materialdesignapp;
 
 import android.animation.Animator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,8 +17,10 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +43,10 @@ public class LoginActivity extends AppCompatActivity {
     FloatingActionButton fab;
     @BindView(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
+    @BindView(R.id.android2)
+    ImageView android2;
+    @BindView(R.id.main_relative_layout)
+    RelativeLayout mainRelativeLayout;
 
     private Animation shake;
 
@@ -48,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         public void onClick(View v) {
             Snackbar.make(coordinatorLayout, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-            startActivity(new Intent(getApplicationContext(), DetailActivity.class));
+            startActivity(new Intent(getApplicationContext(), DrawerActivity.class));
 //            } else {
 //            if (passwordEditText.getText().toString().equals(mypassword)) {
 //                startActivity(new Intent(getApplicationContext(), DetailActivity.class));
@@ -100,6 +107,14 @@ public class LoginActivity extends AppCompatActivity {
                 imageView.setVisibility(View.VISIBLE);
                 anim.start();
                 return false;
+            }
+        });
+
+        mainRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
         });
 
