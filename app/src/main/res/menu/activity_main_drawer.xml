@@ -8,8 +8,8 @@
             android:title="Gallery" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@mipmap/ic_launcher"
-            android:title="Slideshow" />
+            android:icon="@mipmap/orange"
+            android:title="@string/slideshow" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@mipmap/ic_launcher"

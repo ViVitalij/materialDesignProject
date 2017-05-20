@@ -38,6 +38,7 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
@@ -52,6 +53,8 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             Toast.makeText(getApplicationContext(), "gallery", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_slideshow) {
+            startActivity(new Intent(getApplicationContext(), DragDropActivity.class));
+            Toast.makeText(getApplicationContext(), "drag and drop", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_manage) {
 
