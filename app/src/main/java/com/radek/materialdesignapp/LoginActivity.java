@@ -1,5 +1,6 @@
 package com.radek.materialdesignapp;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +11,9 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -66,14 +69,14 @@ public class LoginActivity extends AppCompatActivity {
         initToolbar();
 
         shake = AnimationUtils.loadAnimation(this, R.anim.shake);
-        imageView.startAnimation(shake);
+//        imageView.startAnimation(shake);
 
     }
 
     private void initView() {
         passwordEditText = (EditText) findViewById(R.id.password);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        passwordInputLayout = (TextInputLayout) findViewById(R.id.password_imput_layout);
+        passwordInputLayout = (TextInputLayout) findViewById(R.id.password_input_layout);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         imageView = (ImageView) findViewById(R.id.android);
 
@@ -87,6 +90,19 @@ public class LoginActivity extends AppCompatActivity {
                 imageView.clearAnimation();
             }
         });
+
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int finalRadius = Math.max(imageView.getWidth(), imageView.getHeight()) / 2;
+                Animator anim =
+                        ViewAnimationUtils.createCircularReveal(imageView, (int) event.getX(), (int) event.getY(), 0, finalRadius);
+                imageView.setVisibility(View.VISIBLE);
+                anim.start();
+                return false;
+            }
+        });
+
 
     }
 
