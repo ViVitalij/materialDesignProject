@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 
 /**
@@ -24,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private TextInputLayout passwordInputLayout;
     private  CoordinatorLayout coordinatorLayout;
+    private Animation shake;
 
     private View.OnClickListener myFabListener = new View.OnClickListener() {
         @Override
@@ -48,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         initView();
         setView();
         initToolbar();
+
+        shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+
     }
 
     private void initView() {
